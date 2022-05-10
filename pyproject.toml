@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "iway-certbot-dns-auth"
+version = "0.1.0"
+description = "Certbot hook for DNS challenge using iWay Portal API."
+authors = ["Frank Bohnsack <frank.bohnsack@iway.ch>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+PyYAML = "^6.0"
+requests = "^2.27.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+autopep8 = "^1.6.0"
+pylint = "^2.13.8"
+pydocstyle = "^6.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

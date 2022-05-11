@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "iway-certbot-dns-auth"
 description = "Certbot hook for DNS challenge using iWay Portal API."
-version = "0.1.7"
+version = "0.1.8"
 authors = ["Frank Bohnsack <frank.bohnsack@iway.ch>"]
 license = "MIT"
 readme = "README.txt"
@@ -9,8 +9,8 @@ homepage = "https://github.com/iwayag/iway-certbot-dns-auth"
 repository = "https://github.com/iwayag/iway-certbot-dns-auth"
 include = [
     "*.txt",
-    "scripts/auth-hook",
-    "scripts/cleanup-hook"
+    "scripts/iway-certbot-auth-hook",
+    "scripts/iway-certbot-cleanup-hook"
 ]
 
 [tool.poetry.urls]

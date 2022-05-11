@@ -8,3 +8,5 @@ install/
 __pycache__/
 .pytest_cache
 *.egg-info/
+README.txt
+VERSION.txt

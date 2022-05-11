@@ -1,5 +1,5 @@
 recursive-include iway_certbot_dns_auth *.py
 recursive-include tests *.py
-include *.txt
-graft bin
+include *.txt LICENSE
+graft scripts
 prune etc

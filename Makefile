@@ -3,7 +3,7 @@ VERSION=$(shell git describe --abbrev=0)
 PACKAGE=$(NAME)-$(VERSION).tar.gz
 MODULE=iway_certbot_dns_auth
 
-.PHONY: version test clean distclean requirements.txt requirements-dev.txt
+.PHONY: version test clean distclean
 
 .venv:
 	mkdir .venv
@@ -12,13 +12,7 @@ MODULE=iway_certbot_dns_auth
 version:
 	poetry version $(VERSION)
 
-requirements.txt: Pipfile.lock poetry.lock 
-	poetry export -f requirements.txt > requirements.txt
-
-requirements-dev.txt:
-	poetry export -f requirements.txt --dev > requirements-dev.txt
-
-dist/$(PACKAGE): version requirements.txt requirements-dev.txt
+dist/$(PACKAGE): version
 	poetry build
 
 build: dist/$(PACKAGE)

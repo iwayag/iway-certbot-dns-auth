@@ -7,3 +7,5 @@ install/
 .vscode
 __pycache__/
 .pytest_cache
+*.egg-info/
+requirements*.txt

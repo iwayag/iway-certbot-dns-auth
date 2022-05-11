@@ -20,27 +20,27 @@ from .utils import Config, is_wildcard, clean_domain_name, string_to_idna, idna_
 from .api import PortalApi
 
 
-class PowerDnsChallengeHookError(Exception):
+class DnsChallengeHookError(Exception):
     def __init__(self, *args) -> None:
         super().__init__(*args)
         logging.getLogger(__package__).exception(self)
         sys.exit(1)
 
 
-class PowerDnsChallengeHook:
+class DnsChallengeHook:
     def __init__(self) -> None:
         try:
             self.domain = os.environ['CERTBOT_DOMAIN']
             self.validation = os.environ['CERTBOT_VALIDATION']
             self.auth_output = os.environ.get('CERTBOT_AUTH_OUTPUT')
         except Exception as exc:
-            raise PowerDnsChallengeHookError(
+            raise DnsChallengeHookError(
                 'could not read environment: %s' % exc) from exc
 
         try:
             self.config: Config = Config()
         except Exception as exc:
-            raise PowerDnsChallengeHookError(
+            raise DnsChallengeHookError(
                 'could not read config: %s' % exc) from exc
 
         try:
@@ -48,7 +48,7 @@ class PowerDnsChallengeHook:
                 self.config['account']['username'],
                 self.config['account']['password'])
         except Exception as exc:
-            raise PowerDnsChallengeHookError(
+            raise DnsChallengeHookError(
                 'could not connect API: %s' % exc) from exc
 
         self.clean_domain = idna_to_string(clean_domain_name(self.domain))
@@ -70,7 +70,7 @@ class PowerDnsChallengeHook:
                             and rrset['name'] == domain_record):
                         break
                 else:
-                    raise PowerDnsChallengeHookError(
+                    raise DnsChallengeHookError(
                         "domain record '%s' doesn't exists in '%s'" % (
                             domain_record, self.clean_domain))
 
@@ -109,10 +109,10 @@ class PowerDnsChallengeHook:
 
             self.api.set_zone_records(self.idna_domain, zone)
 
-        except PowerDnsChallengeHookError as exc:
+        except DnsChallengeHookError as exc:
             raise
         except Exception as exc:
-            raise PowerDnsChallengeHookError(exc) from exc
+            raise DnsChallengeHookError(exc) from exc
 
     def cleanup(self):
         """Cleanup hook."""
@@ -131,7 +131,7 @@ class PowerDnsChallengeHook:
                     rrset.update({'changetype': 'DELETE'})
                     break
             else:
-                raise PowerDnsChallengeHookError(
+                raise DnsChallengeHookError(
                     "record %s does not exists in '%s'".format(
                         self.auth_record, self.clean_domain))
 
@@ -139,7 +139,7 @@ class PowerDnsChallengeHook:
 
             self.api.set_zone_records(self.idna_domain, zone)
 
-        except PowerDnsChallengeHookError as exc:
+        except DnsChallengeHookError as exc:
             raise
         except Exception as exc:
-            raise PowerDnsChallengeHookError(exc) from exc
+            raise DnsChallengeHookError(exc) from exc

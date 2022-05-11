@@ -1,5 +1,5 @@
-recursive-include tests *.py
 recursive-include iway_certbot_dns_auth *.py
+recursive-include tests *.py
 include *.txt
-prune bin
+graft bin
 prune etc

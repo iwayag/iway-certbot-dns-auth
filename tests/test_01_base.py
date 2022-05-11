@@ -1,5 +1,5 @@
-from iway_certbot_dns_auth import __version__
+from iway_certbot_dns_auth import DnsChallengeHook
 
 
-def test_01_version():
-    assert __version__ == '0.1.0'
+def test_01():
+    pass

@@ -2,9 +2,15 @@
 
 Certbot hook for DNS challenge using iWay Portal API.
 
+## Dependencies
+
+To use this module the certbot (https://certbot.eff.org/) is required:
+
+    apt install certbot
+
 ## Install
 
-    pip install certbot iway_certbot_dns_auth
+    pip install iway_certbot_dns_auth
 
 ## Config
 
@@ -25,14 +31,15 @@ contain a `logging` section with:
 Example `/etc/iway-certbot-dns-auth.yml`:
 
     account:
-      username: 329901
-      password: 'ceCh3Athei5Ohfa'
+      username: 12345
+      password: 'changeme'
     logging:
       syslog: true
       level: 'DEBUG'
 
 ## Usage
 
+    PATH=$PATH:/usr/local/lib/python3.8/dist-packages/scripts \
     certbot \
       certonly \
       --email me@gmail.com \
@@ -42,7 +49,9 @@ Example `/etc/iway-certbot-dns-auth.yml`:
       --preferred-challenges 'dns' \
       --preferred-chain 'ISRG Root X1' \
       --manual \
-      --manual-auth-hook /path/to/auth-hook \
-      --manual-cleanup-hook /path/to/cleanup-hook \
+      --manual-auth-hook iway-certbot-auth-hook \
+      --manual-cleanup-hook iway-certbot-cleanup-hook \
       --manual-public-ip-logging-ok \
       --domain my-domain.com,www.my-domain.com
+
+_Note:_ `PATH` depends from your local Python version. Checkout `python -V`.

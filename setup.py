@@ -43,8 +43,8 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.5',
 ]
 SCRIPTS = [
-    'scripts/auth-hook',
-    'scripts/cleanup-hook',
+    'scripts/iway-certbot-auth-hook',
+    'scripts/iway-certbot-cleanup-hook',
 ]
 
 params = {

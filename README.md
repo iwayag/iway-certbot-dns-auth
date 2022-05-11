@@ -6,14 +6,10 @@ Certbot hook for DNS challenge using iWay Portal API.
 
 To use this module the [certbot](https://certbot.eff.org/) is required of course :-)
 
-You can install certbot directly by your OS:
+You can (install certbot)[https://certbot.eff.org/instructions?ws=other&os=debianbuster] directly by your OS (e.g. Debian)
+and install `iway_certbot_dns_auth` globally with `sudo pip install iway_certbot_dns_auth`.
 
-- **Debian/Ubuntu/...** - `sudo apt install certbot`
--
-
-and install `iway_certbot_dns_auth` global with `sudo pip install iway_certbot_dns_auth`.
-
-Or, better (install certbot in a virtual environment)[https://certbot.eff.org/instructions?ws=other&os=pip]
+Or, better (install certbot in a Python virtual environment)[https://certbot.eff.org/instructions?ws=other&os=pip]
 together with `iway_certbot_dns_auth`.
 
 ## Config

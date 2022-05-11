@@ -45,7 +45,6 @@ Create a new cert for your domain `my-domain.com` with:
       certonly \
       --email me@gmail.com \
       --no-eff-email \
-      --quiet \
       --agree-tos \
       --preferred-challenges 'dns' \
       --manual \

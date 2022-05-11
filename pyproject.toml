@@ -3,6 +3,12 @@ name = "iway-certbot-dns-auth"
 version = "0.1.0"
 description = "Certbot hook for DNS challenge using iWay Portal API."
 authors = ["Frank Bohnsack <frank.bohnsack@iway.ch>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/iwayag/iway-certbot-dns-auth"
+packages = [
+    { include = "iway_certbot_dns_auth" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"

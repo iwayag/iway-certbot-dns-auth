@@ -1,6 +1,5 @@
 account:
   username: 12345
-  password: 'changeme'
+  password: "changeme"
 logging:
   syslog: true
-  level: 'DEBUG'

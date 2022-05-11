@@ -45,4 +45,4 @@ Example `/etc/iway-certbot-dns-auth.yml`:
       --manual-auth-hook /path/to/auth-hook \
       --manual-cleanup-hook /path/to/cleanup-hook \
       --manual-public-ip-logging-ok \
-      --domain my-domain.com, www.my-domain.com
+      --domain my-domain.com,www.my-domain.com

@@ -4,7 +4,7 @@ Certbot hook for DNS challenge using iWay Portal API.
 
 ## Dependencies
 
-To use this module the certbot (https://certbot.eff.org/) is required:
+To use this module the [certbot](https://certbot.eff.org/) is required of course:
 
     apt install certbot
 

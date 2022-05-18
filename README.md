@@ -40,24 +40,19 @@ Example `/etc/iway-certbot-dns-auth.yml`:
 
 Create a new cert for your domain `my-domain.com` with:
 
-    PATH=$PATH:/usr/local/lib/python3.8/dist-packages/scripts \
     certbot \
       certonly \
       --email me@gmail.com \
       --no-eff-email \
       --agree-tos \
-      --preferred-challenges 'dns' \
+      --preferred-challenges dns \
       --manual \
-      --manual-auth-hook iway-certbot-auth-hook \
-      --manual-cleanup-hook iway-certbot-cleanup-hook \
-      --manual-public-ip-logging-ok \
+      --manual-auth-hook /usr/local/bin/iway-certbot-auth-hook \
+      --manual-cleanup-hook /usr/local/bin/iway-certbot-cleanup-hook \
       --domain my-domain.com
 
 Renew cert with:
 
-    PATH=$PATH:/usr/local/lib/python3.8/dist-packages/scripts \
     certbot \
       renew \
       --force-renewal
-
-_Note:_ `PATH` depends from your local Python version. Checkout `python -V`.

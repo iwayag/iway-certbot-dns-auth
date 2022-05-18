@@ -59,6 +59,4 @@ Create a new cert for your domain `my-domain.com` with:
 
 Renew cert with:
 
-    certbot \
-      renew \
-      --force-renewal
+    certbot renew

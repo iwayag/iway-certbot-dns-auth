@@ -11,6 +11,13 @@ and install `iway-certbot-dns-auth` with:
 
     pip install iway-certbot-dns-auth
 
+To install the `iway-certbot-dns-auth` in your users home use:
+
+    pip install --user iway-certbot-dns-auth
+
+This will install the module hooks under `$HOME/.local/bin/iway-certbot-auth-hook` and `$HOME/.local/bin/iway-certbot-cleanup-hook`.
+Don't forget to expand your `PATH` environment variable to `PATH=$PATH:$HOME/.local/bin`.
+
 Or, better [install certbot in a Python virtual environment](https://certbot.eff.org/instructions?ws=other&os=pip)
 together with `iway-certbot-dns-auth`.
 

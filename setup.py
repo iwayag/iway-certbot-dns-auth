@@ -42,10 +42,12 @@ CLASSIFIERS = [
     'Operating System :: OS Independent',
     'Programming Language :: Python :: 3.5',
 ]
-SCRIPTS = [
-    'scripts/iway-certbot-auth-hook',
-    'scripts/iway-certbot-cleanup-hook',
-]
+ENTRY_POINTS = {
+    'console_scripts': [
+        'iway-certbot-auth-hook = iway_certbot_dns_auth.hooks:certbot_auth_hook',
+        'iway-certbot-cleanup-hook = iway_certbot_dns_auth.hooks:certbot_cleanup_hook',
+    ]
+}
 
 params = {
     'name':                 NAME,
@@ -59,7 +61,6 @@ params = {
     'license':              LICENSE,
     'packages':             PACKAGES,
     'package_data':         PACKAGE_DATA,
-    'scripts':              SCRIPTS,
     'include_package_data': True,
     'install_requires':     INSTALL_REQUIRES,
     'extras_require':       EXTRAS_REQUIRES,
@@ -68,6 +69,7 @@ params = {
     'tests_require':        TESTS_REQUIRE,
     'test_suite':           TEST_SUITE,
     'classifiers':          CLASSIFIERS,
+    'entry_points':         ENTRY_POINTS,
 }
 
 setup(**params)

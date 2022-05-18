@@ -27,6 +27,10 @@ autopep8 = "^1.6.0"
 pylint = "^2.13.8"
 pydocstyle = "^6.1.1"
 
+[tool.poetry.scripts]
+iway-certbot-auth-hook = "iway_certbot_dns_auth.hooks:certbot_auth_hook"
+iway-certbot-cleanup-hook = "iway_certbot_dns_auth.hooks:certbot_cleanup_hook"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

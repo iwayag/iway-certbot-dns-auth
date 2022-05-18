@@ -41,8 +41,10 @@ class Config(dict):
     default_config: str = '/etc/iway-certbot-dns-auth.yml'
 
     def __init__(self, cfg_file: str = None) -> None:
-        self.cfg_file = cfg_file or os.environ.get(
-            self.env_config) or self.default_config
+        self.cfg_file = (
+            cfg_file
+            or os.environ.get(self.env_config)
+            or self.default_config)
 
         with open(self.cfg_file) as cfg:
             logging.getLogger(__package__).debug(

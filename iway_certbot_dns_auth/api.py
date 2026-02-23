@@ -20,6 +20,7 @@ class PortalApi(object):
         self.password = password
         self.timeout = (5, 60)
         self.token = None
+        self.session = requests.Session()
         self.login()
 
     def request(
@@ -51,7 +52,11 @@ class PortalApi(object):
             if self.token:
                 kwargs['headers']['authorization'] = 'Bearer %s' % self.token
 
-            func = getattr(requests, method.lower())
+            csrf_token = self.session.cookies.get('csrftoken')
+            if csrf_token:
+                kwargs['headers']['X-CSRFToken'] = csrf_token
+
+            func = getattr(self.session, method.lower())
 
             # logging.getLogger(__package__).debug(
             #    "API request: %s %s %s", method, url, kwargs)

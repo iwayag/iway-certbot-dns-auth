@@ -41,6 +41,8 @@ Further it can contain a `logging` section with:
 - `facility` - Syslog facility (default `local0`)
 - `format` - log format (default `"%(asctime)s %(levelname)s %(name)s: %(message)s"`)
 
+For long DNS records or multi-level subdomains, like `some.service.my-domain.com`, use the key `dns-zone: my-domain.com`.
+
 Example `/etc/iway-certbot-dns-auth.yml`:
 
     account:
@@ -48,10 +50,11 @@ Example `/etc/iway-certbot-dns-auth.yml`:
       password: 'changeme'
     logging:
       syslog: true
+    dns-zone: my-domain.com
 
 ## Usage
 
-Create a new cert for your domain `my-domain.com` with:
+Create a new cert for your domain `my-domain.com` and `service.my-domain.com` with:
 
     certbot \
       certonly \
@@ -62,8 +65,9 @@ Create a new cert for your domain `my-domain.com` with:
       --manual \
       --manual-auth-hook /usr/local/bin/iway-certbot-auth-hook \
       --manual-cleanup-hook /usr/local/bin/iway-certbot-cleanup-hook \
-      --domain my-domain.com
+      --domain my-domain.com --domain service.my-domain.com
 
 Renew cert with:
 
     certbot renew
+

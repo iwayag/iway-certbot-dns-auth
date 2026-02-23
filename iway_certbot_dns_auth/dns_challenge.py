@@ -40,6 +40,16 @@ class DnsChallengeHook:
 
         try:
             self.config: Config = Config()
+            # Determine the correct zone name and its IDNA version
+            # The API expects the base zone (e.g., 'my-domain.com'), not the full subdomain.
+            if 'dns-zone' in self.config:
+                self.zone_domain = self.config['dns-zone']
+            else:
+                domain_parts = self.domain.split('.')
+                if len(domain_parts) >= 2:
+                    self.zone_domain = '.'.join(domain_parts[-2:])
+                else:
+                    self.zone_domain = self.domain
         except Exception as exc:
             raise DnsChallengeHookError(
                 'could not read config: %s' % exc) from exc
@@ -51,14 +61,6 @@ class DnsChallengeHook:
         except Exception as exc:
             raise DnsChallengeHookError(
                 'could not connect API: %s' % exc) from exc
-            
-        # Determine the correct zone name and its IDNA version
-        # The API expects the base zone (e.g., 'dasbaum.ch'), not the full subdomain.
-        domain_parts = self.domain.split('.')
-        if len(domain_parts) >= 2:
-            self.zone_domain = '.'.join(domain_parts[-2:])
-        else:
-            self.zone_domain = self.domain
 
         # The IDNA-encoded zone domain (used for API calls)
         self.idna_zone_domain = string_to_idna(self.zone_domain)
@@ -178,3 +180,4 @@ class DnsChallengeHook:
             raise
         except Exception as exc:
             raise DnsChallengeHookError(exc) from exc
+
